@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let abc = new XMLHttpRequest();
+        abc.open("GET","https://restcountries.com/v3.1/all");
+        abc.send();
+        abc.responseType="json";
+        abc.onload= function(){
+
+            // to print asian countries
+            let countries = abc.response;
+            console.log(countries);
+            let asia =countries.filter((element)=>{
+                return element.continents == "Asia";
+            });
+            console.log(asia);
+
+            // to print countries having population less than 2lakhs
+
+            let pop=countries.filter((element)=>{
+                return element.population < 200000 ;
+            });
+            console.log(pop);
+
+            // to display country name,capital and flag with forEach funtion
+
+            countries.forEach((element) => {
+                console.log(element.name.common , element.capital,element.flags.png);
+            });
+            
+            let a =[];
+            for (let i of countries){
+                a.push(i.population);
+            }console.log(a);
+
+
+            // to find the total population
+
+            let totalpop=a.reduce((acc,cur)=>{
+                return acc+cur;
+            });
+            console.log(totalpop);
+
+            // to find the countries with currencys USD
+
+
+            let US=countries.filter((data)=>{
+            for (let key in data.currencies) {
+            if(data.currencies[key].name === "United States dollar"){
+            return data
+            }
+            }
+            });
+            console.log(US);
+         
+
+
+        }
+    </script>
+</body>
+</html>
