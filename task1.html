@@ -35,13 +35,16 @@
                 console.log(element.name.common , element.capital,element.flags.png);
             });
             
+
+            // to find the total population
+            
             let a =[];
             for (let i of countries){
                 a.push(i.population);
             }console.log(a);
 
 
-            // to find the total population
+            
 
             let totalpop=a.reduce((acc,cur)=>{
                 return acc+cur;
